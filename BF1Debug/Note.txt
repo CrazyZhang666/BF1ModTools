@@ -1,0 +1,17 @@
+# 参考项目
+
+https://github.com/zerrocxste/alternative-bf1
+https://github.com/CrackerCat/bf1-internal
+
+https://github.com/riskiadi/BF1_CHEAT/blob/d10b89c/BF1/Overlay.cs
+https://github.com/ALEHACKsp/BF1-ESP-AND-AIMBOT/blob/46fc19b/PZ-HAX/render.cpp
+
+https://github.com/CrazyZhang666/ImGui_DX11_Hook
+https://github.com/ocornut/imgui/blob/master/examples/example_win32_directx11/main.cpp
+
+
+https://github.com/ocornut/imgui
+https://github.com/TsudaKageyu/minhook
+
+
+https://github.com/nlohmann/json

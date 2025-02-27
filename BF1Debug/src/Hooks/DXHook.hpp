@@ -1,0 +1,40 @@
+#pragma once
+
+extern LRESULT ImGui_ImplWin32_WndProcHandler(HWND, UINT, WPARAM, LPARAM);
+
+typedef HRESULT(__fastcall* Present) (IDXGISwapChain*, UINT, UINT);
+typedef HRESULT(__fastcall* ResizeBuffers) (IDXGISwapChain*, UINT, UINT, UINT, DXGI_FORMAT, UINT);
+
+enum IDXGISwapChainvTable
+{
+	QUERY_INTERFACE,
+	ADD_REF,
+	RELEASE,
+	SET_PRIVATE_DATA,
+	SET_PRIVATE_DATA_INTERFACE,
+	GET_PRIVATE_DATA,
+	GET_PARENT,
+	GET_DEVICE,
+	PRESENT,
+	GET_BUFFER,
+	SET_FULLSCREEN_STATE,
+	GET_FULLSCREEN_STATE,
+	GET_DESC,
+	RESIZE_BUFFERS,
+	RESIZE_TARGET,
+	GET_CONTAINING_OUTPUT,
+	GET_FRAME_STATISTICS,
+	GET_LAST_PRESENT_COUNT
+};
+
+class DXHook
+{
+public:
+	HWND hWindow = NULL;
+
+public:
+	void InitHook();
+	void ClearHook();
+};
+
+extern DXHook* dxHook;
