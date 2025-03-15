@@ -364,6 +364,7 @@ FodyWeavers.xsd
 
 # 忽略大文件
 Frosty.zip
+FrostyDev.zip
 Marne.zip
 MarneDev.zip
 Service.zip

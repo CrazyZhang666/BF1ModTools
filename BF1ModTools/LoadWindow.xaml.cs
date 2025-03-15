@@ -55,7 +55,12 @@ public partial class LoadWindow
                 DisplayLoadState("清理缓存文件成功");
 
                 DisplayLoadState("正在解压资源文件1/3...");
-                FileHelper.ExtractResFile("Data.Frosty.zip", CoreUtil.File_Frosty);
+                {
+                    if (Globals.IsUseDev)
+                        FileHelper.ExtractResFile("Data.FrostyDev.zip", CoreUtil.File_Frosty);
+                    else
+                        FileHelper.ExtractResFile("Data.Frosty.zip", CoreUtil.File_Frosty);
+                }
                 ZipFile.ExtractToDirectory(CoreUtil.File_Frosty, CoreUtil.Dir_Frosty, true);
                 File.Delete(CoreUtil.File_Frosty);
 
