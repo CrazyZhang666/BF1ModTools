@@ -31,6 +31,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "marne", "marne", "{0AE33F8E
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "BF1Debug", "BF1Debug\BF1Debug.vcxproj", "{9C0D69E6-CA1E-43E4-ABDF-3354804737CE}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LoadMarneDev", "LoadMarneDev\LoadMarneDev.vcxproj", "{5C51A14A-E70D-4A64-A676-9596FE9B593B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -55,6 +57,10 @@ Global
 		{8F3D89C0-321C-4B06-9AE4-99F59FF5090B}.Release|x64.ActiveCfg = Release|x64
 		{9C0D69E6-CA1E-43E4-ABDF-3354804737CE}.Debug|x64.ActiveCfg = Release|x64
 		{9C0D69E6-CA1E-43E4-ABDF-3354804737CE}.Release|x64.ActiveCfg = Release|x64
+		{5C51A14A-E70D-4A64-A676-9596FE9B593B}.Debug|x64.ActiveCfg = Release|x64
+		{5C51A14A-E70D-4A64-A676-9596FE9B593B}.Debug|x64.Build.0 = Release|x64
+		{5C51A14A-E70D-4A64-A676-9596FE9B593B}.Release|x64.ActiveCfg = Release|x64
+		{5C51A14A-E70D-4A64-A676-9596FE9B593B}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -70,6 +76,7 @@ Global
 		{489E340F-E95A-40B1-8A59-4C3EB122F19E} = {1B9854E2-8332-4D88-81D6-AE940023557C}
 		{0AE33F8E-6ACC-4807-8CA2-EA9DE8FD71AA} = {1B9854E2-8332-4D88-81D6-AE940023557C}
 		{9C0D69E6-CA1E-43E4-ABDF-3354804737CE} = {748E8399-7161-480B-9D96-2C2FEAE812EB}
+		{5C51A14A-E70D-4A64-A676-9596FE9B593B} = {748E8399-7161-480B-9D96-2C2FEAE812EB}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {ACF53880-21E7-4FA3-B3B1-4EF810F8BD9F}

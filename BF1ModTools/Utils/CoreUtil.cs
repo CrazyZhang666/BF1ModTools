@@ -173,7 +173,9 @@ public static class CoreUtil
     /// </summary>
     public static string GetWorkMode()
     {
-        return Globals.IsUseServer ? "服务端模式" : "客户端模式";
+        var mode = Globals.IsUseServer ? "服务端模式" : "客户端模式";
+
+        return Globals.IsUseDev ? $"{mode} (Dev)" : mode;
     }
 
     /// <summary>
@@ -193,22 +195,44 @@ public static class CoreUtil
         if (Path.GetFileName(bf1Path) != "bf1.exe")
             return false;
 
-        // 判断文件大小
-        var fileInfo = new FileInfo(bf1Path);
-        if (fileInfo.Length != 344590632)
-            return false;
+        if (Globals.IsUseDev)
+        {
+            // 判断文件大小
+            var fileInfo = new FileInfo(bf1Path);
+            if (fileInfo.Length != 208568744)
+                return false;
 
-        // 判断文件详细信息
-        var fileVerInfo = FileVersionInfo.GetVersionInfo(bf1Path);
+            // 判断文件详细信息
+            var fileVerInfo = FileVersionInfo.GetVersionInfo(bf1Path);
 
-        if (fileVerInfo.CompanyName != "EA Digital Illusions CE AB")
-            return false;
-        if (fileVerInfo.FileDescription != "Battlefield™ 1")
-            return false;
-        if (fileVerInfo.FileVersion != "1, 0, 0, 0")
-            return false;
-        if (fileVerInfo.LegalCopyright != "Copyright © 2016 EA Digital Illusions CE AB. All rights reserved.")
-            return false;
+            if (fileVerInfo.CompanyName != "EA Digital Illusions CE AB")
+                return false;
+            if (fileVerInfo.FileDescription != "Battlefield™ 1")
+                return false;
+            if (fileVerInfo.FileVersion != "1, 0, 57, 44284")
+                return false;
+            if (fileVerInfo.LegalCopyright != "Copyright © 2016 EA Digital Illusions CE AB. All rights reserved.")
+                return false;
+        }
+        else
+        {
+            // 判断文件大小
+            var fileInfo = new FileInfo(bf1Path);
+            if (fileInfo.Length != 344590632)
+                return false;
+
+            // 判断文件详细信息
+            var fileVerInfo = FileVersionInfo.GetVersionInfo(bf1Path);
+
+            if (fileVerInfo.CompanyName != "EA Digital Illusions CE AB")
+                return false;
+            if (fileVerInfo.FileDescription != "Battlefield™ 1")
+                return false;
+            if (fileVerInfo.FileVersion != "1, 0, 0, 0")
+                return false;
+            if (fileVerInfo.LegalCopyright != "Copyright © 2016 EA Digital Illusions CE AB. All rights reserved.")
+                return false;
+        }
 
         return true;
     }

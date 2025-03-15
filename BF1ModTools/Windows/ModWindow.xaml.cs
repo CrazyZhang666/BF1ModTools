@@ -137,15 +137,15 @@ public partial class ModWindow
         };
 
         // 当文件夹路径存在时才会赋值
-        if (Directory.Exists(Globals.DialogDir2))
-            dialog.InitialDirectory = Globals.DialogDir2;
+        if (Directory.Exists(Globals.ModSelectDir))
+            dialog.InitialDirectory = Globals.ModSelectDir;
 
         // 如果未选择，则退出程序
         if (dialog.ShowDialog() == false)
             return;
 
         // 记住本次选择的文件路径
-        Globals.DialogDir2 = Path.GetDirectoryName(dialog.FileName);
+        Globals.ModSelectDir = Path.GetDirectoryName(dialog.FileName);
 
         /////////////////////////////////////////////////////////
 

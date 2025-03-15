@@ -27,19 +27,28 @@ public static class Globals
     /// <summary>
     /// 战地1选择对话框路径
     /// </summary>
-    public static string DialogDir
+    public static string GameSelectDir
     {
-        get => ReadString("Dialog", "InitDir");
-        set => WriteString("Dialog", "InitDir", value);
+        get => ReadString("Dialog", "GameSelectDir");
+        set => WriteString("Dialog", "GameSelectDir", value);
+    }
+
+    /// <summary>
+    /// 战地1选择对话框路径2
+    /// </summary>
+    public static string GameSelectDir2
+    {
+        get => ReadString("Dialog", "GameSelectDir2");
+        set => WriteString("Dialog", "GameSelectDir2", value);
     }
 
     /// <summary>
     /// Mod选择对话框路径
     /// </summary>
-    public static string DialogDir2
+    public static string ModSelectDir
     {
-        get => ReadString("Dialog", "InitDir2");
-        set => WriteString("Dialog", "InitDir2", value);
+        get => ReadString("Dialog", "ModSelectDir");
+        set => WriteString("Dialog", "ModSelectDir", value);
     }
 
     ///////////////////////////////////
@@ -65,6 +74,15 @@ public static class Globals
     ///////////////////////////////////
 
     /// <summary>
+    /// 是否使用开发者模式
+    /// </summary>
+    public static bool IsUseDev
+    {
+        get => ReadBoolean("Mode", "IsUseDev");
+        set => WriteBoolean("Mode", "IsUseDev", value);
+    }
+
+    /// <summary>
     /// 是否使用服务端工作模式
     /// </summary>
     public static bool IsUseServer
@@ -72,6 +90,8 @@ public static class Globals
         get => ReadBoolean("Mode", "IsUseServer");
         set => WriteBoolean("Mode", "IsUseServer", value);
     }
+
+    ///////////////////////////////////
 
     /// <summary>
     /// 是否使用模组运行游戏
@@ -81,8 +101,6 @@ public static class Globals
         get => ReadBoolean("Mode", "IsUseMod");
         set => WriteBoolean("Mode", "IsUseMod", value);
     }
-
-    ///////////////////////////////////
 
     /// <summary>
     /// 是否启用 显示FPS

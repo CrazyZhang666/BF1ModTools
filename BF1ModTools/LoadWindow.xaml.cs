@@ -60,7 +60,12 @@ public partial class LoadWindow
                 File.Delete(CoreUtil.File_Frosty);
 
                 DisplayLoadState("正在解压资源文件2/3...");
-                FileHelper.ExtractResFile("Data.Marne.zip", CoreUtil.File_Marne);
+                {
+                    if (Globals.IsUseDev)
+                        FileHelper.ExtractResFile("Data.MarneDev.zip", CoreUtil.File_Marne);
+                    else
+                        FileHelper.ExtractResFile("Data.Marne.zip", CoreUtil.File_Marne);
+                }
                 ZipFile.ExtractToDirectory(CoreUtil.File_Marne, CoreUtil.Dir_Marne, true);
                 File.Delete(CoreUtil.File_Marne);
 
@@ -79,6 +84,14 @@ public partial class LoadWindow
                 DisplayLoadState($"初始化过程中发送异常  {ex.Message}");
             }
         });
+    }
+
+    /// <summary>
+    /// 窗口渲染完成事件
+    /// </summary>
+    private void Window_Load_ContentRendered(object sender, EventArgs e)
+    {
+        RadioButton_UseDev.IsChecked = Globals.IsUseDev;
     }
 
     /// <summary>
@@ -161,17 +174,30 @@ public partial class LoadWindow
                 CheckPathExists = true
             };
 
-            // 当文件夹路径存在时才会赋值
-            if (Directory.Exists(Globals.DialogDir))
-                dialog.InitialDirectory = Globals.DialogDir;
+            if (Globals.IsUseDev)
+            {
+                // 当文件夹路径存在时才会赋值
+                if (Directory.Exists(Globals.GameSelectDir2))
+                    dialog.InitialDirectory = Globals.GameSelectDir2;
+            }
+            else
+            {
+                // 当文件夹路径存在时才会赋值
+                if (Directory.Exists(Globals.GameSelectDir))
+                    dialog.InitialDirectory = Globals.GameSelectDir;
+            }
 
             // 如果未选择，则退出程序
             if (dialog.ShowDialog() == false)
                 return;
 
             var dirPath = Path.GetDirectoryName(dialog.FileName);
+
             // 记住本次选择的文件路径
-            Globals.DialogDir = dirPath;
+            if (Globals.IsUseDev)
+                Globals.GameSelectDir2 = dirPath;
+            else
+                Globals.GameSelectDir = dirPath;
 
             // 开始校验文件有效性
             if (!CoreUtil.IsBf1MainAppFile(dialog.FileName))
@@ -203,9 +229,20 @@ public partial class LoadWindow
         }
     }
 
-    [RelayCommand]
-    private void SwitchMarneServerEnable()
+    /// <summary>
+    /// 重启自身程序
+    /// </summary>
+    private void RestartApp()
     {
-        RadioButton_UseServer.IsEnabled = !RadioButton_UseServer.IsEnabled;
+        App.AppMainMutex.ReleaseMutex();
+
+        Process.Start(Environment.ProcessPath);
+        Application.Current.Shutdown();
+    }
+
+    private void RadioButton_UseDev_Click(object sender, RoutedEventArgs e)
+    {
+        Globals.IsUseDev = !Globals.IsUseDev;
+        RestartApp();
     }
 }
