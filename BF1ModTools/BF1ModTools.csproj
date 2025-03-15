@@ -37,11 +37,6 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <None Remove="Assets\Files\Data\dinput8Dev.dll" />
-      <None Remove="Assets\Files\Data\MarneDev.zip" />
-    </ItemGroup>
-
-    <ItemGroup>
         <ProjectReference Include="..\ModernWpf\ModernWpf.csproj" />
     </ItemGroup>
 
@@ -114,6 +109,7 @@
         <EmbeddedResource Include="Assets\Files\Data\dinput8.dll" />
         <EmbeddedResource Include="Assets\Files\Data\dinput8Dev.dll" />
         <EmbeddedResource Include="Assets\Files\Data\Frosty.zip" />
+        <EmbeddedResource Include="Assets\Files\Data\FrostyDev.zip" />
         <EmbeddedResource Include="Assets\Files\Data\Marne.zip" />
         <EmbeddedResource Include="Assets\Files\Data\MarneDev.zip" />
         <EmbeddedResource Include="Assets\Files\Data\PROFSAVE.zip" />
