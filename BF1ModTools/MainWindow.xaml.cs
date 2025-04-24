@@ -52,7 +52,7 @@ public partial class MainWindow
         _isCodeClose = false;
 
         // 释放 dinput8.dll 文件
-        if (Globals.IsDrawFps)
+        if (Globals.IsUseDev)
             FileHelper.ExtractResFile("Data.dinput8Dev.dll", Path.Combine(Globals.BF1InstallDir, "dinput8.dll"));
         else
             FileHelper.ExtractResFile("Data.dinput8.dll", Path.Combine(Globals.BF1InstallDir, "dinput8.dll"));
