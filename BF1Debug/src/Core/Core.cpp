@@ -120,7 +120,7 @@ void Core::Delect2()
 				pow(transform.M43 - item.M43, 2.0f)
 			);
 
-			if (distance < 0.8f)
+			if (distance < global->radius)
 			{
 				core->spawnPos.Team1PosList.erase(core->spawnPos.Team1PosList.begin() + i);
 
@@ -141,7 +141,7 @@ void Core::Delect2()
 				pow(transform.M43 - item.M43, 2.0f)
 			);
 
-			if (distance < 0.8f)
+			if (distance < global->radius)
 			{
 				core->spawnPos.Team2PosList.erase(core->spawnPos.Team2PosList.begin() + i);
 

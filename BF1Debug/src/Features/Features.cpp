@@ -10,9 +10,6 @@ ImColor white_color_50 = ImColor(110, 110, 128, 128);
 float room_scale = 1.0f;
 
 bool is_use_vehicle_mode = false;
-float points = 18.0f;		// 组成3D圆需要的点数量
-float radius = 0.8f;		// 3D圆的半径
-float line_length = 1.6f;	// 半径的2倍
 
 void ShowLoaction()
 {
@@ -50,9 +47,9 @@ void ShowLoaction()
 			transform.M41, transform.M42, transform.M43
 		);
 
-		draw->AddCircle3D(location, points, radius, yellow_color);
+		draw->AddCircle3D(location, global->points, global->radius, yellow_color);
 		draw->AddText2(location, yellow_color, "+");
-		draw->AddYawLine(transform, line_length, yellow_color);
+		draw->AddYawLine(transform, global->line_length, yellow_color);
 	}
 	else if (IsValidPtr(pClientSoldierEntity))
 	{
@@ -62,9 +59,9 @@ void ShowLoaction()
 			transform.M41, transform.M42, transform.M43
 		);
 
-		draw->AddCircle3D(location, points, radius, yellow_color);
+		draw->AddCircle3D(location, global->points, global->radius, yellow_color);
 		draw->AddText2(location, yellow_color, "+");
-		draw->AddYawLine(transform, line_length, yellow_color);
+		draw->AddYawLine(transform, global->line_length, yellow_color);
 	}
 
 	if (pClientPlayer->teamId == 1)
@@ -79,21 +76,21 @@ void ShowLoaction()
 
 			if (i < 54)
 			{
-				draw->AddCircle3D(location, points, radius, yellow_color);
+				draw->AddCircle3D(location, global->points, global->radius, yellow_color);
 
 				auto indexStr = std::to_string(i);
 				draw->AddText2(location, white_color, indexStr.c_str());
 
-				draw->AddYawLine(core->spawnPos.Team1PosList[i], line_length, yellow_color);
+				draw->AddYawLine(core->spawnPos.Team1PosList[i], global->line_length, yellow_color);
 			}
 			else
 			{
-				draw->AddCircle3D(location, points, radius, white_color);
+				draw->AddCircle3D(location, global->points, global->radius, white_color);
 
 				auto indexStr = std::to_string(i);
 				draw->AddText2(location, blue_color, indexStr.c_str());
 
-				draw->AddYawLine(core->spawnPos.Team1PosList[i], line_length, white_color);
+				draw->AddYawLine(core->spawnPos.Team1PosList[i], global->line_length, white_color);
 			}
 		}
 	}
@@ -109,21 +106,21 @@ void ShowLoaction()
 
 			if (i < 54)
 			{
-				draw->AddCircle3D(location, points, radius, yellow_color);
+				draw->AddCircle3D(location, global->points, global->radius, yellow_color);
 
 				auto indexStr = std::to_string(i);
 				draw->AddText2(location, white_color, indexStr.c_str());
 
-				draw->AddYawLine(core->spawnPos.Team2PosList[i], line_length, yellow_color);
+				draw->AddYawLine(core->spawnPos.Team2PosList[i], global->line_length, yellow_color);
 			}
 			else
 			{
-				draw->AddCircle3D(location, points, radius, white_color);
+				draw->AddCircle3D(location, global->points, global->radius, white_color);
 
 				auto indexStr = std::to_string(i);
 				draw->AddText2(location, blue_color, indexStr.c_str());
 
-				draw->AddYawLine(core->spawnPos.Team2PosList[i], line_length, white_color);
+				draw->AddYawLine(core->spawnPos.Team2PosList[i], global->line_length, white_color);
 			}
 		}
 	}
@@ -453,15 +450,15 @@ void ShowMenu()
 			ImGui::Checkbox("vehicle mode", &is_use_vehicle_mode);
 			if (is_use_vehicle_mode)
 			{
-				points = 56.0f;			// 组成3D圆需要的点数量
-				radius = 2.4f;			// 3D圆的半径
-				line_length = 4.8f;		// 半径的2倍
+				global->points = 56.0f;			// 组成3D圆需要的点数量
+				global->radius = 2.4f;			// 3D圆的半径
+				global->line_length = 4.8f;		// 半径的2倍
 			}
 			else
 			{
-				points = 18.0f;			// 组成3D圆需要的点数量
-				radius = 0.8f;			// 3D圆的半径
-				line_length = 1.6f;		// 半径的2倍
+				global->points = 18.0f;			// 组成3D圆需要的点数量
+				global->radius = 0.8f;			// 3D圆的半径
+				global->line_length = 1.6f;		// 半径的2倍
 			}
 
 			// selectedIndex 必须是合法范围
