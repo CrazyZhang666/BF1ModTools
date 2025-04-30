@@ -39,7 +39,7 @@ DWORD WINAPI MainThread(LPVOID lpThreadParameter)
 	FILE* pFile = NULL;
 	freopen_s(&pFile, "CONOUT$", "w", stdout);
 
-	SetConsoleTitleW(L"BF1 ImGui DX11 Hook v0.1");
+	SetConsoleTitleW(L"BF1 Dev ImGui DX11 Hook v0.1");
 	EnableMenuItem(GetSystemMenu(GetConsoleWindow(), false), SC_CLOSE, MF_BYCOMMAND | MF_DISABLED | MF_GRAYED);
 	SetConsoleOutputCP(CP_UTF8);
 
@@ -53,6 +53,7 @@ DWORD WINAPI MainThread(LPVOID lpThreadParameter)
 	std::cout << "当前窗口句柄: " << dxHook->hWindow << std::endl;
 	std::cout << std::endl;
 
+	std::cout << "按 INS 键显示隐藏" << std::endl;
 	std::cout << "按 END 键卸载注入" << std::endl;
 	std::cout << std::endl;
 
@@ -60,51 +61,60 @@ DWORD WINAPI MainThread(LPVOID lpThreadParameter)
 
 	dxHook->InitHook();
 
-	bool isKey1Down = false;
-	bool isKey2Down = false;
-	bool isKey3Down = false;
+	bool isKeyInsDown = false;
+
+	bool isKeyF1Down = false;
+	bool isKeyF2Down = false;
+	bool isKeyF3Down = false;
 
 	// 当按下 END 键时卸载DLL
 	do
 	{
-		// Num1键 按下事件，防止重复触发
+		// INS键 按下事件，防止重复触发
+		isKeyInsDown = false;
+		if (IsKeyPress(VK_INSERT))
+		{
+			if (!isKeyInsDown)
+			{
+				isKeyInsDown = true;
+				global->isShowMenu = !global->isShowMenu;
+			}
+		}
+
+		///////////////////////////
+
+		// F1键 按下事件，防止重复触发
+		isKeyF1Down = false;
 		if (IsKeyPress(VK_F1))
 		{
-			if (!isKey1Down)
+			if (!isKeyF1Down)
 			{
-				isKey1Down = true;
+				isKeyF1Down = true;
 				core->Add();
 			}
 		}
-		else
-			if (isKey1Down)
-				isKey1Down = false;
 
-		// Num2键 按下事件，防止重复触发
+		// F2键 按下事件，防止重复触发
+		isKeyF2Down = false;
 		if (IsKeyPress(VK_F2))
 		{
-			if (!isKey2Down)
+			if (!isKeyF2Down)
 			{
-				isKey2Down = true;
+				isKeyF2Down = true;
 				core->Delect();
 			}
 		}
-		else
-			if (isKey2Down)
-				isKey2Down = false;
 
-		// Num3键 按下事件，防止重复触发
+		// F3键 按下事件，防止重复触发
+		isKeyF3Down = false;
 		if (IsKeyPress(VK_F3))
 		{
-			if (!isKey3Down)
+			if (!isKeyF3Down)
 			{
-				isKey3Down = true;
+				isKeyF3Down = true;
 				core->Delect2();
 			}
 		}
-		else
-			if (isKey3Down)
-				isKey3Down = false;
 
 		ThreadSleep(20);
 	} while (!IsKeyPress(VK_END));

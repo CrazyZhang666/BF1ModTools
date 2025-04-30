@@ -541,6 +541,10 @@ void Features::Run()
 
 	ShowLoaction();
 	ShowSelfInfo();
-	ShowRadar();
-	ShowMenu();
+
+	if (global->isShowMenu)
+	{
+		ShowRadar();
+		ShowMenu();
+	}
 }

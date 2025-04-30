@@ -54,12 +54,12 @@ public static class RegistryHelper
         try
         {
             using RegistryKey localMachine = Registry.LocalMachine;
-            using RegistryKey subKey = localMachine.OpenSubKey(@"SOFTWARE\Wow6432Node\Origin", true);
-            if (subKey is not null)
+            using RegistryKey openSubKey = localMachine.OpenSubKey(@"SOFTWARE\Wow6432Node\Origin", true);
+            if (openSubKey is not null)
                 return;
 
-            using RegistryKey newSubKey = localMachine.CreateSubKey(@"SOFTWARE\Wow6432Node\Origin");
-            newSubKey?.SetValue("ClientPath", @"C:\Program Files\Electronic Arts\EA Desktop\EA Desktop\EADesktop.exe", RegistryValueKind.String);
+            using RegistryKey createSubKey = localMachine.CreateSubKey(@"SOFTWARE\Wow6432Node\Origin");
+            createSubKey?.SetValue("ClientPath", @"C:\Program Files\Electronic Arts\EA Desktop\EA Desktop\EADesktop.exe", RegistryValueKind.String);
         }
         catch (Exception ex)
         {

@@ -12,17 +12,13 @@ public partial class App : Application
     /// 主程序互斥体
     /// </summary>
     public static Mutex AppMainMutex;
-    /// <summary>
-    /// 应用程序名称
-    /// </summary>
-    private readonly string AppName = ResourceAssembly.GetName().Name;
 
     /// <summary>
     /// 保证程序只能同时启动一个
     /// </summary>
     protected override void OnStartup(StartupEventArgs e)
     {
-        LoggerHelper.Info($"欢迎使用 {AppName} 程序");
+        LoggerHelper.Info($"欢迎使用 {Globals.AppName} 程序");
 
         // 注册异常捕获
         RegisterEvents();
@@ -31,11 +27,11 @@ public partial class App : Application
 
         //////////////////////////////////////////////////////
 
-        AppMainMutex = new Mutex(true, AppName, out var createdNew);
+        AppMainMutex = new Mutex(true, Globals.AppName, out var createdNew);
         if (!createdNew)
         {
             LoggerHelper.Warn("请不要重复打开，程序已经运行");
-            MsgBoxHelper.Warning($"请不要重复打开，程序已经运行\n如果一直提示，请到\"任务管理器-详细信息（win7为进程）\"里\n强制结束 \"{AppName}.exe\" 程序");
+            MsgBoxHelper.Warning($"请不要重复打开，程序已经运行\n如果一直提示，请到\"任务管理器-详细信息（win7为进程）\"里\n强制结束 \"{Globals.AppName}.exe\" 程序");
             Environment.Exit(0);
             return;
         }

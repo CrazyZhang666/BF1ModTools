@@ -6,6 +6,11 @@ namespace BF1ModTools;
 public static class Globals
 {
     /// <summary>
+    /// 应用程序名称
+    /// </summary>
+    public static readonly string AppName = Application.ResourceAssembly.GetName().Name;
+
+    /// <summary>
     /// 配置文件路径
     /// </summary>
     private static readonly string _iniPath;

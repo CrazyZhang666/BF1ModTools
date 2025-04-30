@@ -9,6 +9,7 @@ class Global
 {
 public:
 	bool isUnloadAll = false;
+	bool isShowMenu = true;
 
 	HMODULE hModule = NULL;
 };

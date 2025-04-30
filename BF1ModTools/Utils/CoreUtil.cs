@@ -36,7 +36,6 @@ public static class CoreUtil
     public static string File_Marne_MarneLauncher { get; private set; }
 
     public static string File_Service_EADesktop { get; private set; }
-    public static string File_Service_OriginDebug { get; private set; }
     public static string File_Service_Notepad4 { get; private set; }
     #endregion
 
@@ -105,7 +104,6 @@ public static class CoreUtil
         File_Marne_MarneDll = Path.Combine(Dir_Marne, "Marne.dll");
 
         File_Service_EADesktop = Path.Combine(Dir_Service, "EADesktop.exe");
-        File_Service_OriginDebug = Path.Combine(Dir_Service, "OriginDebug.exe");
         File_Service_Notepad4 = Path.Combine(Dir_Service, "Notepad4.exe");
         #endregion
 
@@ -130,14 +128,12 @@ public static class CoreUtil
 
         ProcessHelper.CloseProcess("EADesktop");
         ProcessHelper.CloseProcess("Origin");
-        ProcessHelper.CloseProcess("OriginDebug");
         ProcessHelper.CloseProcess("Notepad4");
-
-        ProcessHelper.CloseProcess("EAappEmulater");
-
         ProcessHelper.CloseProcess("FrostyModManager");
         ProcessHelper.CloseProcess("MarneLauncher");
+        ProcessHelper.CloseProcess("EAappEmulater");
 
+        ProcessHelper.CloseProcess("bf1");
         ProcessHelper.CloseProcess("EAAntiCheat.GameServiceLauncher");
     }
 

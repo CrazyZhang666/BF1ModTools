@@ -21,8 +21,12 @@ public static class FileHelper
     {
         return Task.Run(() =>
         {
-            if (Directory.Exists(dirPath))
-                Directory.Delete(dirPath, true);
+            try
+            {
+                if (Directory.Exists(dirPath))
+                    Directory.Delete(dirPath, true);
+            }
+            catch { }
         });
     }
 
@@ -33,8 +37,12 @@ public static class FileHelper
     {
         return Task.Run(() =>
         {
-            if (File.Exists(filePath))
-                File.Delete(filePath);
+            try
+            {
+                if (File.Exists(filePath))
+                    File.Delete(filePath);
+            }
+            catch { }
         });
     }
 
@@ -61,7 +69,7 @@ public static class FileHelper
     public static Stream GetEmbeddedResourceStream(string resPath)
     {
         var assembly = Assembly.GetExecutingAssembly();
-        return assembly.GetManifestResourceStream($"BF1ModTools.Assets.Files.{resPath}");
+        return assembly.GetManifestResourceStream($"{assembly.GetName().Name}.Assets.Files.{resPath}");
     }
 
     /// <summary>
@@ -155,8 +163,6 @@ public static class FileHelper
     /// <summary>
     /// 获取文件MD5值
     /// </summary>
-    /// <param name="filePath"></param>
-    /// <returns></returns>
     public static async Task<string> GetFileMD5(string filePath)
     {
         if (!File.Exists(filePath))
