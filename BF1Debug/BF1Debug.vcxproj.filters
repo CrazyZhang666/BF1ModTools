@@ -162,4 +162,7 @@
   <ItemGroup>
     <Text Include="Note.txt" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Xenos64.7z" />
+  </ItemGroup>
 </Project>
