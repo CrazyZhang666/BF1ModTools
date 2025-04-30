@@ -71,7 +71,6 @@ DWORD WINAPI MainThread(LPVOID lpThreadParameter)
 	do
 	{
 		// INS键 按下事件，防止重复触发
-		isKeyInsDown = false;
 		if (IsKeyPress(VK_INSERT))
 		{
 			if (!isKeyInsDown)
@@ -80,11 +79,12 @@ DWORD WINAPI MainThread(LPVOID lpThreadParameter)
 				global->isShowMenu = !global->isShowMenu;
 			}
 		}
+		else if (isKeyInsDown)
+			isKeyInsDown = false;
 
 		///////////////////////////
 
 		// F1键 按下事件，防止重复触发
-		isKeyF1Down = false;
 		if (IsKeyPress(VK_F1))
 		{
 			if (!isKeyF1Down)
@@ -93,9 +93,10 @@ DWORD WINAPI MainThread(LPVOID lpThreadParameter)
 				core->Add();
 			}
 		}
+		else if (isKeyF1Down)
+			isKeyF1Down = false;
 
 		// F2键 按下事件，防止重复触发
-		isKeyF2Down = false;
 		if (IsKeyPress(VK_F2))
 		{
 			if (!isKeyF2Down)
@@ -104,9 +105,10 @@ DWORD WINAPI MainThread(LPVOID lpThreadParameter)
 				core->Delect();
 			}
 		}
+		else if (isKeyF2Down)
+			isKeyF2Down = false;
 
 		// F3键 按下事件，防止重复触发
-		isKeyF3Down = false;
 		if (IsKeyPress(VK_F3))
 		{
 			if (!isKeyF3Down)
@@ -115,6 +117,8 @@ DWORD WINAPI MainThread(LPVOID lpThreadParameter)
 				core->Delect2();
 			}
 		}
+		else if (isKeyF3Down)
+			isKeyF3Down = false;
 
 		ThreadSleep(20);
 	} while (!IsKeyPress(VK_END));
