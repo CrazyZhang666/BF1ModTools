@@ -9,6 +9,11 @@ ImColor white_color_50 = ImColor(110, 110, 128, 128);
 
 float room_scale = 1.0f;
 
+bool is_use_vehicle_mode = false;
+float points = 18.0f;		// 组成3D圆需要的点数量
+float radius = 0.8f;		// 3D圆的半径
+float line_length = radius * 2.0f;
+
 void ShowLoaction()
 {
 	ClientPlayer* pClientPlayer = GetLocalPlayer();
@@ -32,18 +37,34 @@ void ShowLoaction()
 	ImGui::SetWindowPos(ImVec2(), ImGuiCond_Always);
 	ImGui::SetWindowSize(ImVec2(io.DisplaySize.x, io.DisplaySize.y), ImGuiCond_Always);
 
+	ClientVehicleEntity* pClientVehicleEntity = pClientPlayer->clientVehicleEntity;
 	ClientSoldierEntity* pClientSoldierEntity = pClientPlayer->clientSoldierEntity;
-	if (IsValidPtr(pClientSoldierEntity))
+
+	if (IsValidPtr(pClientVehicleEntity))
 	{
-		// 在自己脚底画圆
+		// 载具 在自己脚底画圆
+		Matrix4x4 transform;
+		pClientVehicleEntity->GetTransform(&transform);
+
+		Vector3 location(
+			transform.M41, transform.M42, transform.M43
+		);
+
+		draw->AddCircle3D(location, points, radius, yellow_color);
+		draw->AddText2(location, yellow_color, "+");
+		draw->AddYawLine(transform, line_length, yellow_color);
+	}
+	else if (IsValidPtr(pClientSoldierEntity))
+	{
+		// 士兵 在自己脚底画圆
 		Matrix4x4 transform = pClientSoldierEntity->transform;
 		Vector3 location(
 			transform.M41, transform.M42, transform.M43
 		);
 
-		draw->AddCircle3D(location, 18.f, 0.8f, yellow_color);
+		draw->AddCircle3D(location, points, radius, yellow_color);
 		draw->AddText2(location, yellow_color, "+");
-		draw->AddYawLine(transform, 1.6f, yellow_color);
+		draw->AddYawLine(transform, line_length, yellow_color);
 	}
 
 	if (pClientPlayer->teamId == 1)
@@ -58,21 +79,21 @@ void ShowLoaction()
 
 			if (i < 54)
 			{
-				draw->AddCircle3D(location, 18.f, 0.8f, yellow_color);
+				draw->AddCircle3D(location, points, radius, yellow_color);
 
 				auto indexStr = std::to_string(i);
 				draw->AddText2(location, white_color, indexStr.c_str());
 
-				draw->AddYawLine(core->spawnPos.Team1PosList[i], 1.6f, yellow_color);
+				draw->AddYawLine(core->spawnPos.Team1PosList[i], line_length, yellow_color);
 			}
 			else
 			{
-				draw->AddCircle3D(location, 18.f, 0.8f, white_color);
+				draw->AddCircle3D(location, points, radius, white_color);
 
 				auto indexStr = std::to_string(i);
 				draw->AddText2(location, blue_color, indexStr.c_str());
 
-				draw->AddYawLine(core->spawnPos.Team1PosList[i], 1.6f, white_color);
+				draw->AddYawLine(core->spawnPos.Team1PosList[i], line_length, white_color);
 			}
 		}
 	}
@@ -88,21 +109,21 @@ void ShowLoaction()
 
 			if (i < 54)
 			{
-				draw->AddCircle3D(location, 18.f, 0.8f, yellow_color);
+				draw->AddCircle3D(location, points, radius, yellow_color);
 
 				auto indexStr = std::to_string(i);
 				draw->AddText2(location, white_color, indexStr.c_str());
 
-				draw->AddYawLine(core->spawnPos.Team2PosList[i], 1.6f, yellow_color);
+				draw->AddYawLine(core->spawnPos.Team2PosList[i], line_length, yellow_color);
 			}
 			else
 			{
-				draw->AddCircle3D(location, 18.f, 0.8f, white_color);
+				draw->AddCircle3D(location, points, radius, white_color);
 
 				auto indexStr = std::to_string(i);
 				draw->AddText2(location, blue_color, indexStr.c_str());
 
-				draw->AddYawLine(core->spawnPos.Team2PosList[i], 1.6f, white_color);
+				draw->AddYawLine(core->spawnPos.Team2PosList[i], line_length, white_color);
 			}
 		}
 	}
@@ -147,9 +168,43 @@ void ShowSelfInfo()
 
 	ImGui::Begin("Show Self Info", NULL, window_flags);
 
+	ClientVehicleEntity* pClientVehicleEntity = pClientPlayer->clientVehicleEntity;
 	ClientSoldierEntity* pClientSoldierEntity = pClientPlayer->clientSoldierEntity;
-	if (IsValidPtr(pClientSoldierEntity))
+
+	if (IsValidPtr(pClientVehicleEntity))
 	{
+		// 载具
+		Matrix4x4 transform;
+		pClientVehicleEntity->GetTransform(&transform);
+
+		ImGui::Text("M11: %f", transform.M11);
+		ImGui::Text("M12: %f", transform.M12);
+		ImGui::Text("M13: %f", transform.M13);
+		ImGui::Text("M14: %f", transform.M14);
+
+		ImGui::Separator();
+		ImGui::Text("M21: %f", transform.M21);
+		ImGui::Text("M22: %f", transform.M22);
+		ImGui::Text("M23: %f", transform.M23);
+		ImGui::Text("M24: %f", transform.M24);
+
+		ImGui::Separator();
+		ImGui::Text("M31: %f", transform.M31);
+		ImGui::Text("M32: %f", transform.M32);
+		ImGui::Text("M33: %f", transform.M33);
+		ImGui::Text("M34: %f", transform.M34);
+
+		ImGui::Separator();
+		ImGui::Text("M41: %f", transform.M41);
+		ImGui::Text("M42: %f", transform.M42);
+		ImGui::Text("M43: %f", transform.M43);
+		ImGui::Text("M44: %f", transform.M44);
+
+		ImGui::Separator();
+	}
+	else if (IsValidPtr(pClientSoldierEntity))
+	{
+		// 士兵
 		Matrix4x4 transform = pClientSoldierEntity->transform;
 
 		ImGui::Text("M11: %f", transform.M11);
@@ -230,11 +285,23 @@ void ShowRadar()
 	draw->AddLine(ImVec2(pos, pos + size / 2), ImVec2(pos + size, pos + size / 2), white_color_50);
 	draw->AddLine(ImVec2(pos + size / 2, pos), ImVec2(pos + size / 2, pos + size), white_color_50);
 
+	ClientVehicleEntity* pClientVehicleEntity = pClientPlayer->clientVehicleEntity;
 	ClientSoldierEntity* pClientSoldierEntity = pClientPlayer->clientSoldierEntity;
-	if (IsValidPtr(pClientSoldierEntity))
-	{
-		Matrix4x4 transform = pClientSoldierEntity->transform;
+	Matrix4x4 transform;
 
+	if (IsValidPtr(pClientVehicleEntity))
+	{
+		// 载具
+		pClientVehicleEntity->GetTransform(&transform);
+	}
+	else if (IsValidPtr(pClientSoldierEntity))
+	{
+		// 士兵
+		transform = pClientSoldierEntity->transform;
+	}
+
+	if (IsValidPtr(pClientPlayer))
+	{
 		if (pClientPlayer->teamId == 1)
 		{
 			for (int i = 0; i < core->spawnPos.Team1PosList.size(); i++)
@@ -293,7 +360,7 @@ void ShowMenu()
 
 	// 右上角
 	ImGui::SetNextWindowPos(ImVec2(viewport->WorkSize.x - 10, 10), ImGuiCond_Always, ImVec2(1, 0));
-	ImGui::SetNextWindowSize(ImVec2(620, 600));
+	ImGui::SetNextWindowSize(ImVec2(700, 600));
 	ImGui::SetNextWindowBgAlpha(0.8f);
 
 	ImGui::Begin("BF1 Player Spawn Point Record Tools", NULL, window_flags);
@@ -313,7 +380,7 @@ void ShowMenu()
 
 				lableStr.append("[");
 				lableStr.append(std::to_string(i));
-				lableStr.append("]  ");
+				lableStr.append("] ");
 				lableStr.append(std::to_string(core->spawnPos.Team1PosList[i].M41));
 				lableStr.append(", ");
 				lableStr.append(std::to_string(core->spawnPos.Team1PosList[i].M42));
@@ -343,7 +410,7 @@ void ShowMenu()
 
 				lableStr.append("[");
 				lableStr.append(std::to_string(i));
-				lableStr.append("]  ");
+				lableStr.append("] ");
 				lableStr.append(std::to_string(core->spawnPos.Team2PosList[i].M41));
 				lableStr.append(", ");
 				lableStr.append(std::to_string(core->spawnPos.Team2PosList[i].M42));
@@ -380,6 +447,18 @@ void ShowMenu()
 			ImGui::Text("count: %d", core->spawnPos.Team1PosList.size());
 
 			ImGui::SliderFloat("room scale", &room_scale, 0.1f, 2.0f, "%.2f");
+
+			ImGui::Checkbox("vehicle mode", &is_use_vehicle_mode);
+			if (is_use_vehicle_mode)
+			{
+				points = 56.0f;	// 组成3D圆需要的点数量
+				radius = 2.4f;	// 3D圆的半径
+			}
+			else
+			{
+				points = 18.0f;	// 组成3D圆需要的点数量
+				radius = 0.8f;	// 3D圆的半径
+			}
 
 			// selectedIndex 必须是合法范围
 			if (core->seleTeam1Index >= 0 && core->seleTeam1Index < core->spawnPos.Team1PosList.size())

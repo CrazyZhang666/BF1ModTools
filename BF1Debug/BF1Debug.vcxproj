@@ -99,6 +99,7 @@
     <ClInclude Include="src\Math\Matrix4x4.hpp" />
     <ClInclude Include="src\Math\Vector2.hpp" />
     <ClInclude Include="src\Math\Vector3.hpp" />
+    <ClInclude Include="src\Math\Vector4.hpp" />
     <ClInclude Include="src\MinHook\include\MinHook.h" />
     <ClInclude Include="src\MinHook\src\buffer.h" />
     <ClInclude Include="src\MinHook\src\hde\hde32.h" />

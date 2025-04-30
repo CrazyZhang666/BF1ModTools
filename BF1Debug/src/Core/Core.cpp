@@ -9,27 +9,53 @@ void Core::Add()
 	if (!IsValidPtr(pClientPlayer))
 		return;
 
+	ClientVehicleEntity* pClientVehicleEntity = pClientPlayer->clientVehicleEntity;
 	ClientSoldierEntity* pClientSoldierEntity = pClientPlayer->clientSoldierEntity;
-	if (!IsValidPtr(pClientSoldierEntity))
-		return;
 
-	Matrix4x4 transform = pClientSoldierEntity->transform;
-
-	if (pClientPlayer->teamId == 1)
+	if (IsValidPtr(pClientVehicleEntity))
 	{
-		// 添加到队伍1
-		core->spawnPos.Team1PosList.push_back(transform);
-		core->seleTeam1Index = core->spawnPos.Team1PosList.size() - 1;
+		// 载具
+		Matrix4x4 transform;
+		pClientVehicleEntity->GetTransform(&transform);
 
-		Beep(700, 75);
+		if (pClientPlayer->teamId == 1)
+		{
+			// 添加到队伍1
+			core->spawnPos.Team1PosList.push_back(transform);
+			core->seleTeam1Index = core->spawnPos.Team1PosList.size() - 1;
+
+			Beep(700, 75);
+		}
+		else if (pClientPlayer->teamId == 2)
+		{
+			// 添加到队伍2
+			core->spawnPos.Team2PosList.push_back(transform);
+			core->seleTeam2Index = core->spawnPos.Team2PosList.size() - 1;
+
+			Beep(700, 75);
+		}
 	}
-	else if (pClientPlayer->teamId == 2)
+	else if (IsValidPtr(pClientSoldierEntity))
 	{
-		// 添加到队伍2
-		core->spawnPos.Team2PosList.push_back(transform);
-		core->seleTeam2Index = core->spawnPos.Team2PosList.size() - 1;
+		// 士兵
+		Matrix4x4 transform = pClientSoldierEntity->transform;
 
-		Beep(700, 75);
+		if (pClientPlayer->teamId == 1)
+		{
+			// 添加到队伍1
+			core->spawnPos.Team1PosList.push_back(transform);
+			core->seleTeam1Index = core->spawnPos.Team1PosList.size() - 1;
+
+			Beep(700, 75);
+		}
+		else if (pClientPlayer->teamId == 2)
+		{
+			// 添加到队伍2
+			core->spawnPos.Team2PosList.push_back(transform);
+			core->seleTeam2Index = core->spawnPos.Team2PosList.size() - 1;
+
+			Beep(700, 75);
+		}
 	}
 }
 
