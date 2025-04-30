@@ -12,7 +12,7 @@ float room_scale = 1.0f;
 bool is_use_vehicle_mode = false;
 float points = 18.0f;		// 组成3D圆需要的点数量
 float radius = 0.8f;		// 3D圆的半径
-float line_length = radius * 2.0f;
+float line_length = 1.6f;	// 半径的2倍
 
 void ShowLoaction()
 {
@@ -287,7 +287,7 @@ void ShowRadar()
 
 	ClientVehicleEntity* pClientVehicleEntity = pClientPlayer->clientVehicleEntity;
 	ClientSoldierEntity* pClientSoldierEntity = pClientPlayer->clientSoldierEntity;
-	Matrix4x4 transform;
+	Matrix4x4 transform{};
 
 	if (IsValidPtr(pClientVehicleEntity))
 	{
@@ -300,7 +300,9 @@ void ShowRadar()
 		transform = pClientSoldierEntity->transform;
 	}
 
-	if (IsValidPtr(pClientPlayer))
+	// 绘制雷达2D坐标
+	// 当玩家士兵为有效指针时才绘制
+	if (IsValidPtr(pClientSoldierEntity))
 	{
 		if (pClientPlayer->teamId == 1)
 		{
@@ -451,13 +453,15 @@ void ShowMenu()
 			ImGui::Checkbox("vehicle mode", &is_use_vehicle_mode);
 			if (is_use_vehicle_mode)
 			{
-				points = 56.0f;	// 组成3D圆需要的点数量
-				radius = 2.4f;	// 3D圆的半径
+				points = 56.0f;			// 组成3D圆需要的点数量
+				radius = 2.4f;			// 3D圆的半径
+				line_length = 4.8f;		// 半径的2倍
 			}
 			else
 			{
-				points = 18.0f;	// 组成3D圆需要的点数量
-				radius = 0.8f;	// 3D圆的半径
+				points = 18.0f;			// 组成3D圆需要的点数量
+				radius = 0.8f;			// 3D圆的半径
+				line_length = 1.6f;		// 半径的2倍
 			}
 
 			// selectedIndex 必须是合法范围

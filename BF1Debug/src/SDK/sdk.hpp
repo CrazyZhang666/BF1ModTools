@@ -143,6 +143,16 @@ public:
 	uint8_t occluded; //0x06EB
 	char pad_06EC[628]; //0x06EC
 	Matrix4x4 transform; //0x0960
+
+	bool IsValid() {
+		return (this->healthcomponent->m_Health > 0.1f && this->healthcomponent->m_Health <= this->healthcomponent->m_MaxHealth);
+	}
+	bool IsDead() {
+		return !(this->healthcomponent->m_Health > 0.1f);
+	}
+	bool IsVisible() {
+		return (this->occluded == false);
+	}
 }; //Size: 0x104C
 
 class ClientPlayer {
