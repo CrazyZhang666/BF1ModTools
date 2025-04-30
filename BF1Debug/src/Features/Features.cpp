@@ -362,7 +362,7 @@ void ShowMenu()
 
 	// срио╫г
 	ImGui::SetNextWindowPos(ImVec2(viewport->WorkSize.x - 10, 10), ImGuiCond_Always, ImVec2(1, 0));
-	ImGui::SetNextWindowSize(ImVec2(700, 600));
+	ImGui::SetNextWindowSize(ImVec2(600, 700));
 	ImGui::SetNextWindowBgAlpha(0.8f);
 
 	ImGui::Begin("BF1 Player Spawn Point Record Tools", NULL, window_flags);
