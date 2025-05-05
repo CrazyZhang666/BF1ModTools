@@ -55,7 +55,7 @@
                                     Margin="5,0,10,0"
                                     VerticalAlignment="Center"
                                     FontSize="34"
-                                    Icon="&#xF259;" />
+                                    Icon="&#xEA86;" />
                                 <StackPanel Margin="0,0,7,0">
                                     <TextBlock
                                         FontSize="13"
