@@ -452,13 +452,13 @@ void ShowMenu()
 			{
 				global->points = 56.0f;			// 组成3D圆需要的点数量
 				global->radius = 2.4f;			// 3D圆的半径
-				global->line_length = 4.8f;		// 半径的2倍
+				global->line_length = 4.8f;		// 半径的2倍（载具不需要考虑是否遮挡）
 			}
 			else
 			{
 				global->points = 18.0f;			// 组成3D圆需要的点数量
 				global->radius = 0.8f;			// 3D圆的半径
-				global->line_length = 1.6f;		// 半径的2倍
+				global->line_length = 4.0f;		// 半径的5倍（因为要考虑趴下是否遮挡）
 			}
 
 			// selectedIndex 必须是合法范围
