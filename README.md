@@ -2,7 +2,7 @@
 
 战地1模组工具箱 By CrazyZhang666
 
-![image](https://github.com/user-attachments/assets/ebb563ae-5d32-4221-bfe3-8e77a009ff4d)
+![image](https://github.com/user-attachments/assets/6699899c-86ba-49a3-aa1c-dde01b9b0e1e)
 
 # 相关下载
 
