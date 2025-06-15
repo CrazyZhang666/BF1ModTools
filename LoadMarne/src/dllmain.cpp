@@ -1,7 +1,7 @@
 ﻿// dllmain.cpp : 定义 DLL 应用程序的入口点。
 #include "framework.h"
 
-std::wstring className = L"HwndWrapper[BF1ModTools;;";
+std::wstring className = L"HwndWrapper[BF1MarneTools;;";
 std::string offlineName = "战地风云1";
 
 PVOID fpGetComputerNameA = NULL;
@@ -143,7 +143,7 @@ void Core()
 		return;
 
 	// 构建 马恩DLL 文件路径
-	std::filesystem::path dllPath = std::filesystem::path(programDataPath) / "BF1ModTools" / "Marne" / "Marne.dll";
+	std::filesystem::path dllPath = std::filesystem::path(programDataPath) / "BF1MarneTools" / "Marne" / "Marne.dll";
 	// 检查文件是否存在
 	if (!std::filesystem::exists(dllPath))
 		return;
@@ -177,7 +177,7 @@ void Core()
 	/////////////////////////////////////////
 
 	// 构建 玩家名称 文件路径
-	std::filesystem::path namePath = std::filesystem::path(programDataPath) / "BF1ModTools" / "Config" / "PlayerName.txt";
+	std::filesystem::path namePath = std::filesystem::path(programDataPath) / "BF1MarneTools" / "Config" / "PlayerName.txt";
 
 	// 以二进制模式打开文件以确保正确处理所有字符
 	std::ifstream fileRead(namePath, std::ios::in | std::ios::binary);
