@@ -1,0 +1,134 @@
+﻿<ui:Window
+    x:Class="BF1MarneTools.Windows.LangWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:BF1MarneTools"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:ui="http://wpf.microsoft.com/ui/2025/xaml"
+    x:Name="Window_Lang"
+    Title="战地1马恩工具箱"
+    Width="500"
+    Height="250"
+    MinWidth="500"
+    MinHeight="250"
+    Closing="Window_Lang_Closing"
+    DataContext="{Binding RelativeSource={RelativeSource Mode=Self}}"
+    Icon="/Assets/Icons/Favicon.ico"
+    Loaded="Window_Lang_Loaded"
+    ResizeMode="NoResize"
+    Style="{StaticResource SystemWindowStyle}"
+    WindowStartupLocation="CenterOwner"
+    mc:Ignorable="d">
+
+    <Grid Margin="5">
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <StackPanel>
+            <ui:IconHeader Title="战地1游戏语言" Margin="5,0,5,0" />
+            <UniformGrid
+                x:Name="UniformGrid_Language"
+                Margin="0,5,0,0"
+                Columns="3">
+                <ui:ImageRadioButton
+                    Margin="5"
+                    Content="英语"
+                    GroupName="Language"
+                    Source="pack://application:,,,/BF1MarneTools;component/Assets/Images/Regions/en_US.png"
+                    Tag="en_US" />
+                <ui:ImageRadioButton
+                    Margin="5"
+                    Content="法语"
+                    GroupName="Language"
+                    Source="pack://application:,,,/BF1MarneTools;component/Assets/Images/Regions/fr_FR.png"
+                    Tag="fr_FR" />
+                <ui:ImageRadioButton
+                    Margin="5"
+                    Content="德语"
+                    GroupName="Language"
+                    Source="pack://application:,,,/BF1MarneTools;component/Assets/Images/Regions/de_DE.png"
+                    Tag="de_DE" />
+                <ui:ImageRadioButton
+                    Margin="5"
+                    Content="西班牙语 - 西班牙"
+                    GroupName="Language"
+                    Source="pack://application:,,,/BF1MarneTools;component/Assets/Images/Regions/es_ES.png"
+                    Tag="es_ES" />
+                <ui:ImageRadioButton
+                    Margin="5"
+                    Content="意大利语"
+                    GroupName="Language"
+                    Source="pack://application:,,,/BF1MarneTools;component/Assets/Images/Regions/it_IT.png"
+                    Tag="it_IT" />
+                <ui:ImageRadioButton
+                    Margin="5"
+                    Content="俄语"
+                    GroupName="Language"
+                    Source="pack://application:,,,/BF1MarneTools;component/Assets/Images/Regions/ru_RU.png"
+                    Tag="ru_RU" />
+                <ui:ImageRadioButton
+                    Margin="5"
+                    Content="波兰语"
+                    GroupName="Language"
+                    Source="pack://application:,,,/BF1MarneTools;component/Assets/Images/Regions/pl_PL.png"
+                    Tag="pl_PL" />
+                <ui:ImageRadioButton
+                    Margin="5"
+                    Content="日语"
+                    GroupName="Language"
+                    Source="pack://application:,,,/BF1MarneTools;component/Assets/Images/Regions/ja_JP.png"
+                    Tag="ja_JP" />
+                <ui:ImageRadioButton
+                    Margin="5"
+                    Content="繁体中文"
+                    GroupName="Language"
+                    Source="pack://application:,,,/BF1MarneTools;component/Assets/Images/Regions/zh_TW.png"
+                    Tag="zh_TW" />
+                <ui:ImageRadioButton
+                    Margin="5"
+                    Content="葡萄牙语 - 巴西"
+                    GroupName="Language"
+                    Source="pack://application:,,,/BF1MarneTools;component/Assets/Images/Regions/pt_BR.png"
+                    Tag="pt_BR" />
+                <ui:ImageRadioButton
+                    Margin="5"
+                    Content="西班牙语 - 墨西哥"
+                    GroupName="Language"
+                    Source="pack://application:,,,/BF1MarneTools;component/Assets/Images/Regions/es_MX.png"
+                    Tag="es_MX" />
+                <ui:ImageRadioButton
+                    Margin="5"
+                    Content="阿拉伯语"
+                    GroupName="Language"
+                    Source="pack://application:,,,/BF1MarneTools;component/Assets/Images/Regions/ar_SA.png"
+                    Tag="ar_SA" />
+                <ui:ImageRadioButton
+                    Margin="5"
+                    Content="土耳其语"
+                    GroupName="Language"
+                    Source="pack://application:,,,/BF1MarneTools;component/Assets/Images/Regions/tr_TR.png"
+                    Tag="tr_TR" />
+            </UniformGrid>
+        </StackPanel>
+
+        <StackPanel
+            Grid.Row="1"
+            HorizontalAlignment="Right"
+            Orientation="Horizontal">
+            <ui:IconButton
+                Margin="0,5,5,5"
+                Command="{Binding EnterLangCommand}"
+                Content="确认"
+                Icon="&#xF78C;" />
+            <ui:IconButton
+                Margin="0,5,5,5"
+                Command="{Binding CancelLangCommand}"
+                Content="取消"
+                Icon="&#xF78A;" />
+        </StackPanel>
+    </Grid>
+
+</ui:Window>

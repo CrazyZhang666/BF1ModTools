@@ -1,0 +1,22 @@
+﻿Server.AdministrationPassword 123456
+Server.RemoteControlPort 3232
+Network.ServerPort 25200
+Server.ServerName "[MARNE] Official - Mod - CN - #01"
+#Server.ServerPassword 123456
+BFServer.ServerDescription "MARNE Official Mod China Server"
+Server.OutgoingHighFrequency 60
+Game.DisablePreRound true
+Server.VehicleRespawnTimeScale 0
+Server.SoldierRespawnTimeScale 0
+SyncedGame.SpectatorDelay 0
+BFServer.NoInteractivityTimeoutTime 9999
+BFServer.TeamSwitchImbalanceLimit 1
+BFServer.AutoBalance true
+MARNE.NeedSameMods true
+MARNE.AllowMoreMods false
+MARNE.BotTeam 0.0
+MARNE.StatsSystem UNLOCKALL
+SyncedBFSettings.RoundTimeLimit 100
+SyncedBFSettings.TicketCountScale 1
+Online.Region AS
+Online.Country CN

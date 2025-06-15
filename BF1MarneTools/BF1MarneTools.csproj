@@ -1,0 +1,145 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<OutputType>WinExe</OutputType>
+		<TargetFramework>net8.0-windows</TargetFramework>
+		<UseWPF>true</UseWPF>
+		<Platforms>x64</Platforms>
+		<PlatformTarget>x64</PlatformTarget>
+		<Nullable>disable</Nullable>
+		<ImplicitUsings>disable</ImplicitUsings>
+		<StartupObject>BF1MarneTools.App</StartupObject>
+		<ApplicationIcon>Assets\Icons\Favicon.ico</ApplicationIcon>
+		<ApplicationManifest>Properties\app.manifest</ApplicationManifest>
+	</PropertyGroup>
+
+	<PropertyGroup>
+		<GenerateAssemblyTitleAttribute>false</GenerateAssemblyTitleAttribute>
+		<GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
+		<GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
+		<GenerateAssemblyVersionAttribute>false</GenerateAssemblyVersionAttribute>
+		<GenerateAssemblyFileVersionAttribute>false</GenerateAssemblyFileVersionAttribute>
+		<GenerateAssemblyInformationalVersionAttribute>false</GenerateAssemblyInformationalVersionAttribute>
+	</PropertyGroup>
+
+	<PropertyGroup>
+		<IncludeNativeLibrariesForSelfExtract>true</IncludeNativeLibrariesForSelfExtract>
+		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+		<DebugType>full</DebugType>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+		<DebugType>none</DebugType>
+		<DebugSymbols>false</DebugSymbols>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\ModernWpf\ModernWpf.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
+		<PackageReference Include="gong-wpf-dragdrop" Version="4.0.0" />
+		<PackageReference Include="Hardcodet.NotifyIcon.Wpf" Version="2.0.1" />
+		<PackageReference Include="NLog" Version="5.5.0" />
+		<PackageReference Include="Notification.Wpf" Version="8.0.0" />
+		<PackageReference Include="RestSharp" Version="112.1.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Folder Include="Properties\PublishProfiles\" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Resource Include="Assets\Icons\Favicon.ico" />
+		<Resource Include="Assets\Images\BF1Logo.png" />
+		<Resource Include="Assets\Images\FrostyModManager.png" />
+		<Resource Include="Assets\Images\Maps\MP_Alps.jpg" />
+		<Resource Include="Assets\Images\Maps\MP_Amiens.jpg" />
+		<Resource Include="Assets\Images\Maps\MP_Beachhead.jpg" />
+		<Resource Include="Assets\Images\Maps\MP_Blitz.jpg" />
+		<Resource Include="Assets\Images\Maps\MP_Bridge.jpg" />
+		<Resource Include="Assets\Images\Maps\MP_Chateau.jpg" />
+		<Resource Include="Assets\Images\Maps\MP_Desert.jpg" />
+		<Resource Include="Assets\Images\Maps\MP_FaoFortress.jpg" />
+		<Resource Include="Assets\Images\Maps\MP_Fields.jpg" />
+		<Resource Include="Assets\Images\Maps\MP_Forest.jpg" />
+		<Resource Include="Assets\Images\Maps\MP_Giant.jpg" />
+		<Resource Include="Assets\Images\Maps\MP_Graveyard.jpg" />
+		<Resource Include="Assets\Images\Maps\MP_Harbor.jpg" />
+		<Resource Include="Assets\Images\Maps\MP_Hell.jpg" />
+		<Resource Include="Assets\Images\Maps\MP_Islands.jpg" />
+		<Resource Include="Assets\Images\Maps\MP_ItalianCoast.jpg" />
+		<Resource Include="Assets\Images\Maps\MP_London.jpg" />
+		<Resource Include="Assets\Images\Maps\MP_MountainFort.jpg" />
+		<Resource Include="Assets\Images\Maps\MP_Naval.jpg" />
+		<Resource Include="Assets\Images\Maps\MP_Offensive.jpg" />
+		<Resource Include="Assets\Images\Maps\MP_Ravines.jpg" />
+		<Resource Include="Assets\Images\Maps\MP_Ridge.jpg" />
+		<Resource Include="Assets\Images\Maps\MP_River.jpg" />
+		<Resource Include="Assets\Images\Maps\MP_Scar.jpg" />
+		<Resource Include="Assets\Images\Maps\MP_Shoveltown.jpg" />
+		<Resource Include="Assets\Images\Maps\MP_Suez.jpg" />
+		<Resource Include="Assets\Images\Maps\MP_Trench.jpg" />
+		<Resource Include="Assets\Images\Maps\MP_Tsaritsyn.jpg" />
+		<Resource Include="Assets\Images\Maps\MP_Underworld.jpg" />
+		<Resource Include="Assets\Images\Maps\MP_Valley.jpg" />
+		<Resource Include="Assets\Images\Maps\MP_Verdun.jpg" />
+		<Resource Include="Assets\Images\Maps\MP_Volga.jpg" />
+		<Resource Include="Assets\Images\MarneLauncher.png" />
+		<Resource Include="Assets\Images\Regions\ar_SA.png" />
+		<Resource Include="Assets\Images\Regions\de_DE.png" />
+		<Resource Include="Assets\Images\Regions\en_US.png" />
+		<Resource Include="Assets\Images\Regions\es_ES.png" />
+		<Resource Include="Assets\Images\Regions\es_MX.png" />
+		<Resource Include="Assets\Images\Regions\fr_FR.png" />
+		<Resource Include="Assets\Images\Regions\it_IT.png" />
+		<Resource Include="Assets\Images\Regions\ja_JP.png" />
+		<Resource Include="Assets\Images\Regions\pl_PL.png" />
+		<Resource Include="Assets\Images\Regions\pt_BR.png" />
+		<Resource Include="Assets\Images\Regions\ru_RU.png" />
+		<Resource Include="Assets\Images\Regions\tr_TR.png" />
+		<Resource Include="Assets\Images\Regions\zh_TW.png" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<EmbeddedResource Include="Assets\Files\Data\dinput8.dll" />
+		<EmbeddedResource Include="Assets\Files\Data\Frosty.zip" />
+		<EmbeddedResource Include="Assets\Files\Data\Marne.zip" />
+		<EmbeddedResource Include="Assets\Files\Data\PROFSAVE.zip" />
+		<EmbeddedResource Include="Assets\Files\Data\Service.zip" />
+		<EmbeddedResource Include="Assets\Files\LSX\00.xml" />
+		<EmbeddedResource Include="Assets\Files\LSX\01.xml" />
+		<EmbeddedResource Include="Assets\Files\LSX\02.xml" />
+		<EmbeddedResource Include="Assets\Files\LSX\03.xml" />
+		<EmbeddedResource Include="Assets\Files\LSX\04.xml" />
+		<EmbeddedResource Include="Assets\Files\LSX\05.xml" />
+		<EmbeddedResource Include="Assets\Files\LSX\06.xml" />
+		<EmbeddedResource Include="Assets\Files\LSX\07.xml" />
+		<EmbeddedResource Include="Assets\Files\LSX\08.xml" />
+		<EmbeddedResource Include="Assets\Files\LSX\09.xml" />
+		<EmbeddedResource Include="Assets\Files\LSX\10.xml" />
+		<EmbeddedResource Include="Assets\Files\LSX\11.xml" />
+		<EmbeddedResource Include="Assets\Files\LSX\12.xml" />
+		<EmbeddedResource Include="Assets\Files\LSX\13.xml" />
+		<EmbeddedResource Include="Assets\Files\LSX\14.xml" />
+		<EmbeddedResource Include="Assets\Files\LSX\15.xml" />
+		<EmbeddedResource Include="Assets\Files\LSX\16.xml" />
+		<EmbeddedResource Include="Assets\Files\LSX\17.xml" />
+		<EmbeddedResource Include="Assets\Files\LSX\18.xml" />
+		<EmbeddedResource Include="Assets\Files\LSX\19.xml" />
+		<EmbeddedResource Include="Assets\Files\LSX\20.xml" />
+		<EmbeddedResource Include="Assets\Files\LSX\21.xml" />
+		<EmbeddedResource Include="Assets\Files\LSX\22.xml" />
+		<EmbeddedResource Include="Assets\Files\LSX\23.xml" />
+		<EmbeddedResource Include="Assets\Files\LSX\24.xml" />
+		<EmbeddedResource Include="Assets\Files\LSX\25.xml" />
+		<EmbeddedResource Include="Assets\Files\LSX\26.xml" />
+		<EmbeddedResource Include="Assets\Files\LSX\27.xml" />
+		<EmbeddedResource Include="Assets\Files\Docs\ServerSettings.txt" />
+	</ItemGroup>
+
+</Project>

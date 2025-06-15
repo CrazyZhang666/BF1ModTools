@@ -1,0 +1,134 @@
+﻿<ui:Window
+    x:Class="BF1MarneTools.LoadWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:BF1MarneTools"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:ui="http://wpf.microsoft.com/ui/2025/xaml"
+    x:Name="Window_Load"
+    Title="战地1马恩工具箱"
+    Width="550"
+    Height="330"
+    MinWidth="550"
+    MinHeight="330"
+    Closing="Window_Load_Closing"
+    ContentRendered="Window_Load_ContentRendered"
+    DataContext="{Binding RelativeSource={RelativeSource Mode=Self}}"
+    Icon="/Assets/Icons/Favicon.ico"
+    Loaded="Window_Load_Loaded"
+    ResizeMode="NoResize"
+    Style="{StaticResource CustomSystemWindowStyle}"
+    mc:Ignorable="d">
+
+    <ui:Window.TitleContent>
+        <DockPanel>
+            <StackPanel
+                VerticalAlignment="Center"
+                DockPanel.Dock="Right"
+                Orientation="Horizontal"
+                WindowChrome.IsHitTestVisibleInChrome="True">
+                <ui:IconHyperlink
+                    Margin="0,0,7,0"
+                    Text="官方网站"
+                    ToolTip="https://battlefield.vip"
+                    Uri="https://battlefield.vip" />
+                <ui:WinButton
+                    Command="{Binding OpenConfigFolderCommand}"
+                    FontSize="14"
+                    Icon="&#xE713;"
+                    ToolTip="打开配置目录" />
+                <Border
+                    Width="1"
+                    Height="14"
+                    Margin="7,0,7,0"
+                    Background="Gray" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <ui:Image
+                    Width="18"
+                    Height="18"
+                    Margin="7,0,0,0"
+                    Source="{Binding Icon}" />
+                <TextBlock
+                    Margin="7,0,0,0"
+                    VerticalAlignment="Center"
+                    Text="{Binding Title}" />
+            </StackPanel>
+        </DockPanel>
+    </ui:Window.TitleContent>
+
+    <DockPanel>
+        <StackPanel DockPanel.Dock="Top">
+            <ui:IconHeader Title="战地1安装路径" />
+            <DockPanel>
+                <ui:IconButton
+                    Margin="0,5,5,5"
+                    VerticalAlignment="Center"
+                    Command="{Binding SelcetBf1PathCommand}"
+                    Content="浏览"
+                    DockPanel.Dock="Right"
+                    Icon="&#xE71E;" />
+                <ui:TextBoxHint
+                    x:Name="TextBoxHint_Bf1Path"
+                    Hint="请选择战地1游戏安装目录 &quot;bf1.exe&quot; 文件位置"
+                    Icon="&#xE838;"
+                    IsReadOnly="True"
+                    Text="{Binding LoadModel.Bf1Path, UpdateSourceTrigger=PropertyChanged}" />
+            </DockPanel>
+
+            <DockPanel>
+                <ui:IconHeader
+                    Title="软件运行模式"
+                    Margin="5"
+                    VerticalAlignment="Center" />
+                <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+                    <ui:ImageRadioButton
+                        Margin="5"
+                        d:IsChecked="True"
+                        Content="客户端"
+                        GroupName="WorkMode"
+                        IsChecked="{Binding ElementName=RadioButton_UseServer, Path=IsChecked, Converter={StaticResource InverseBooleanConverter}}" />
+                    <ui:ImageRadioButton
+                        x:Name="RadioButton_UseServer"
+                        Margin="5"
+                        Content="服务端"
+                        GroupName="WorkMode"
+                        IsChecked="{Binding Path=(local:Globals.IsUseServer)}" />
+                </StackPanel>
+            </DockPanel>
+        </StackPanel>
+
+        <ui:IconButton
+            Padding="10"
+            Command="{Binding LaunchMainAppCommand}"
+            Content="启动主程序"
+            DockPanel.Dock="Bottom"
+            Icon="&#xF0D6;">
+            <ui:IconButton.Style>
+                <Style BasedOn="{StaticResource IconButtonStyle_Base}" TargetType="{x:Type ui:IconButton}">
+                    <Setter Property="IsEnabled" Value="False" />
+                    <Style.Triggers>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding LoadModel.IsInitSuccess}" Value="True" />
+                                <Condition Binding="{Binding ElementName=TextBoxHint_Bf1Path, Path=Text, Converter={StaticResource IsNullOrWhiteSpace2Converter}}" Value="True" />
+                            </MultiDataTrigger.Conditions>
+                            <MultiDataTrigger.Setters>
+                                <Setter Property="IsEnabled" Value="True" />
+                            </MultiDataTrigger.Setters>
+                        </MultiDataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </ui:IconButton.Style>
+        </ui:IconButton>
+
+        <ui:TextBoxHint
+            x:Name="TextBox_Logger"
+            Margin="5,5,5,0"
+            d:Text="等待玩家操作中..."
+            Style="{StaticResource TextBoxHintStyle_Logger}" />
+
+    </DockPanel>
+
+</ui:Window>
